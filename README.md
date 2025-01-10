@@ -1,50 +1,49 @@
-# React + TypeScript + Vite
+# PollForge - Version Roadmap
+This document outlines the planned versions and features for the PollForge. The project follows a structured release plan with three major versions (v1, v2, v3), each containing minor versions with incremental improvements.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## **v1 - Foundation Phase**
+### **v1.0 - Core Survey System**
+- User registration and authentication (JWT Authentication)
+- Create surveys (title, multiple-choice questions)
+- List of created surveys
+- Participate in surveys and submit responses
+- Basic response statistics (total votes, etc.)
 
-Currently, two official plugins are available:
+### **v1.1 - Enhanced User Experience**
+- Survey filtering and search functionality
+- User profile editing
+- Public or private survey option
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### **v1.2 - Survey Management Additions**
+- Set expiration date for surveys
+- Prevent users from voting multiple times
 
-## Expanding the ESLint configuration
+## **v2 - Expansion Phase**
+### **v2.0 - Dynamic Survey Builder**
+- Dynamically survey creation
+- Users can favorite surveys
+- Email survey sharing feature
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### **v2.1 - Vote Security & History**
+- Prevention of duplicate votes based on IP or cookies
+- Users can view their past votes
 
-- Configure the top-level `parserOptions` property like this:
+### **v2.2 - Administration & Moderation**
+- Admin panel (manage reported surveys)
+- Report inappropriate surveys
+- User roles (admin, regular user)
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## **v3 - Intelligent Surveys Phase**
+### **v3.0 - Conditional Survey Logic**
+- Conditional survey flow
+- Save surveys as drafts for later completion
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+### **v3.1 - Data Insights & Scheduling**
+- Export survey results as CSV
+- Scheduled surveys (start and end at a specified date & time)
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+### **v3.2 - Engagement & Interaction**
+- User engagement: survey creators can send thank-you messages or announcements to participants
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+## **Contributing**
+This project is open-source and welcomes contributions. Feel free to submit pull requests or open issues for discussion.
