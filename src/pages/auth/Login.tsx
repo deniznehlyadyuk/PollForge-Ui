@@ -1,6 +1,9 @@
 import GoogleLogo from "../../assets/google-logo.svg?react"
+import {useAuth} from "../../auth/useAuth";
 
-export default () => {
+export const Login = () => {
+  const {login} = useAuth();
+
   return (
     <div className="flex flex-col w-[27.5rem]">
         <div className="flex flex-col items-center gap-2 p-5 text-[#2E2E2E]">
@@ -8,7 +11,10 @@ export default () => {
           <span className="text-center font-thin">To proceed, please log in using your Google account, as it is currently the only supported login option.</span>
         </div>
         <div className="p-5">
-          <div className="flex justify-center items-center shadow-md hover:shadow-lg rounded py-2 duration-300 cursor-pointer">
+          <div
+            className="flex justify-center items-center shadow-md hover:shadow-lg rounded py-2 duration-300 cursor-pointer"
+            onClick={() => login()}
+          >
             <GoogleLogo width={32} height={32} />
           </div>
         </div>
