@@ -1,2 +1,1 @@
-export {login} from './auth'
-export {authorizedEndpoint} from './user'
+export * as AuthServices from './auth'

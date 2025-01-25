@@ -1,18 +1,28 @@
 import {useLoginButton} from "../hooks";
-import {me} from "../services/auth";
+import {AuthServices} from "../services";
 
 export const Home = () => {
   const {login} = useLoginButton();
 
   return (
     <>
-      <button onClick={() => login()}>
-        Login
-      </button>
+      <div>
+        <button onClick={() => login()}>
+          Login
+        </button>
+      </div>
 
-      <button onClick={() => me()}>
-        Me
-      </button>
+      <div>
+        <button onClick={() => AuthServices.me()}>
+          Me
+        </button>
+      </div>
+
+      <div>
+        <button onClick={() => AuthServices.refreshToken()}>
+          Refresh Token
+        </button>
+      </div>
     </>
   )
 }

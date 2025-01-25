@@ -1,6 +1,6 @@
 import {useLocation} from "react-router";
 import {useEffect, useRef} from "react";
-import {login} from "../../services";
+import {AuthServices} from '../../services'
 
 export const Callback = () => {
   const location = useLocation();
@@ -51,7 +51,7 @@ export const Callback = () => {
       return;
     }
 
-    await login(urlParams.code, authSessionData.codeVerifier);
+    await AuthServices.login(urlParams.code, authSessionData.codeVerifier);
 
     window.location.href = '/';
   }
