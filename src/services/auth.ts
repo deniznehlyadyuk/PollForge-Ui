@@ -8,3 +8,17 @@ export const login = async (code: string, codeVerifier: string) => {
     credentials: 'include'
   })
 }
+
+export const refreshToken = async () => {
+  return await fetch(`/auth/refresh-token`, {
+    method: 'POST',
+    credentials: 'include',
+  })
+}
+
+export const me = async () => {
+  return await fetch(`/auth/me`, {
+    method: 'GET',
+    credentials: 'include',
+  })
+}

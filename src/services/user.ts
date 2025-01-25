@@ -4,10 +4,3 @@ export const authorizedEndpoint = async () => {
     credentials: 'include',
   })
 }
-
-export const refreshToken = async () => {
-  return await fetch(`/auth/refresh-token`, {
-    method: 'POST',
-    credentials: 'include',
-  })
-}
