@@ -1,9 +1,3 @@
-export const generateRandomString = (length: number) => {
-  const array = new Uint32Array(length / 2);
-  window.crypto.getRandomValues(array);
-  return Array.from(array, dec => ('0' + dec.toString(16)).slice(-2)).join('');
-}
-
 export const generateCodeChallenge = async (codeVerifier: string) => {
   const encoder = new TextEncoder();
   const data = encoder.encode(codeVerifier);
@@ -32,8 +26,6 @@ export const generateAuthLoginUrl = (settings: GenerateAuthLoginUrlSettings) => 
   params.append("code_challenge", settings.codeChallenge);
   params.append("code_challenge_method", "S256");
   params.append("state", settings.state);
-  params.append("access_type", "offline");
-  params.append("prompt", "consent");
 
   const url = new URL(`${settings.authorizationEndpoint}?${params.toString()}`);
 

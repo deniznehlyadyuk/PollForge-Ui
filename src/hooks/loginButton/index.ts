@@ -1,7 +1,8 @@
-import {generateAuthLoginUrl, generateCodeChallenge, generateRandomString} from "./utils";
-import {AUTHORIZATION_ENDPOINT, CLIENT_ID, REDIRECT_URI, SCOPE} from "./constants";
+import {generateAuthLoginUrl, generateCodeChallenge} from "./utils";
+import {AUTHORIZATION_ENDPOINT, CLIENT_ID, REDIRECT_URI, SCOPE} from "../../constants";
+import {generateRandomString} from "../../utils";
 
-export const useAuth = () => {
+export const useLoginButton = () => {
   const login = async () => {
     const state = generateRandomString(64);
     const codeVerifier = generateRandomString(64);
@@ -15,7 +16,7 @@ export const useAuth = () => {
       scope: SCOPE,
       codeChallenge: codeChallenge,
       authorizationEndpoint: AUTHORIZATION_ENDPOINT,
-      state: state
+      state: state,
     });
   }
 

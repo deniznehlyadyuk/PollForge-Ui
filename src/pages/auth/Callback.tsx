@@ -1,41 +1,63 @@
-import {useLocation, useNavigate} from "react-router";
+import {useLocation} from "react-router";
 import {useEffect, useRef} from "react";
+import {login} from "../../services";
 
 export const Callback = () => {
-  const navigate = useNavigate();
   const location = useLocation();
   const useEffectRan = useRef<boolean>(false);
 
-  useEffect(() => {
+  const getAuthSessionData = () => {
+    const authData = sessionStorage.getItem('auth');
+    sessionStorage.removeItem('auth');
+
+    if (!authData) {
+      return null;
+    }
+
+    try {
+      return JSON.parse(authData);
+    } catch {
+      return null;
+    }
+  }
+
+  const getUrlParams = () => {
+    const params = new URLSearchParams(location.search);
+    const state = params.get('state')
+    const code = params.get('code')
+
+    return {state, code}
+  }
+
+  const handleCallback = async () => {
     if (useEffectRan.current) {
       return;
     }
 
     useEffectRan.current = true;
 
-    const authSessionStorage = sessionStorage.getItem('auth')
-    sessionStorage.removeItem('auth')
+    const authSessionData = getAuthSessionData();
+    const urlParams = getUrlParams();
 
-    if (authSessionStorage === null) {
-      navigate('/login')
+    if (!urlParams.state || !urlParams.code)
+    {
+      window.location.href = '/';
       return;
     }
-
-    const {state: storageState, codeVerifier: storageCodeVerifier} = JSON.parse(authSessionStorage)
-
-    const params = new URLSearchParams(location.search);
-    const state = params.get('state')
-    const code = params.get('code')
-
-    navigate('/auth/callback', {replace: true})
 
     // CSRF attack protection
-    if (state !== storageState) {
-      navigate('/login');
+    if (urlParams.state !== authSessionData.state) {
+      window.location.href = '/';
       return;
     }
 
-    console.log(code, storageCodeVerifier)
+    await login(urlParams.code, authSessionData.codeVerifier);
+
+    window.location.href = '/';
+  }
+
+  useEffect(() => {
+    handleCallback();
   }, [])
 
   return null;
