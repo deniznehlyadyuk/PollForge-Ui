@@ -22,3 +22,10 @@ export const me = async () => {
     credentials: 'include',
   })
 }
+
+export const logout = async () => {
+  return await fetch(`/auth/logout`, {
+    method: 'POST',
+    credentials: 'include',
+  })
+}

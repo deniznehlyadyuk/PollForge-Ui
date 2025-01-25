@@ -23,6 +23,12 @@ export const Home = () => {
           Refresh Token
         </button>
       </div>
+
+      <div>
+        <button onClick={() => AuthServices.logout()}>
+          Logout
+        </button>
+      </div>
     </>
   )
 }
